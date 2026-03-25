@@ -1,4 +1,4 @@
- import { useReducer, useState } from "react";
+ import { useReducer} from "react";
 import Board from "./components/Board";
 import type{ Task } from "./types";
 import { generateTasks } from "./utilis/generateTasks";

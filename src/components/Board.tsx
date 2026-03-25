@@ -13,6 +13,8 @@ function Board({ tasks, dispatch }: Props) {
 const [searchParams,setSearchParams]=useSearchParams();
 const statusUrl=searchParams.get("status");
 
+
+
 const initialStatus=statusUrl ?
 statusUrl.split(","):[];
 
@@ -20,7 +22,23 @@ const [selectedStatus, setSelectedStatus] =
 React.useState<string[]>(initialStatus);
 
 
+
+
 const [selectedPriority,setSelectedPriority]=React.useState<string[]>([]);
+ React.useEffect(() => {
+  const params: any = {};
+
+  if (selectedStatus.length > 0) {
+    params.status = selectedStatus.join(",");
+  }
+
+  if (selectedPriority.length > 0) {
+    params.priority = selectedPriority.join(",");
+  }
+
+  setSearchParams(params);
+}, [selectedStatus, selectedPriority]);
+
 
 const filteredTasks = tasks.filter(task => {
   const statusMatch =
